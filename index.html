@@ -385,71 +385,154 @@
             .contact-info { flex-direction: column; align-items: flex-end; }
         }
 
-        /* This is the key section for print-specific styling */
+        /* Print layout: authenticated resume only, compacted for one A4 page. */
         @media print {
             @page {
-                size: A4;
-                margin: 0;
+                size: A4 portrait;
+                margin: 5mm;
             }
+
+            html, body {
+                width: auto;
+                min-height: 0;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+            }
+
             body {
-                padding: 0;
-                margin: 0;
+                display: block !important;
+                font-size: 8pt;
+                line-height: 1.12;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
-            .page-container {
-                box-shadow: none;
-                border-radius: 0;
-                padding: 0.4cm;
-                margin: 0;
-                font-size: 10pt;
-                max-width: none;
-                width: 100%;
+
+            /* Printing the CV is available only after successful login. */
+            body:not(.resume-authenticated) #login-page {
+                display: flex !important;
             }
+
+            body:not(.resume-authenticated) #resume-page {
+                display: none !important;
+            }
+
+            body.resume-authenticated #login-page,
+            #logout-toast {
+                display: none !important;
+            }
+
+            body.resume-authenticated #resume-page {
+                display: grid !important;
+                grid-template-columns: 1fr;
+                width: 100% !important;
+                max-width: none !important;
+                min-height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                gap: 0;
+                box-shadow: none !important;
+                border: 0 !important;
+                border-radius: 0 !important;
+                font-size: 8pt;
+                line-height: 1.12;
+                /* Chrome/Edge use this to fit the compact CV to the printable page. */
+                zoom: 0.92;
+            }
+
+            .bsd {
+                top: 0;
+                right: 0;
+                font-size: 7pt;
+            }
+
             .header {
-                padding-bottom: 5px;
-                margin-bottom: 2px;
-                margin-top: 10px; /* Small gap for print version */
+                padding-bottom: 3px;
+                margin: 5px 0 2px;
             }
+
             .header h1 {
-                font-size: 1.5em; /* Increased size for the main header */
+                font-size: 15pt;
+                margin-bottom: 1px;
             }
-            .header p { font-size: 0.9em; }
+
+            .header p {
+                font-size: 8pt;
+            }
+
             .contact-info {
-                gap: 5px;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 2px 7px;
+                margin-top: 2px;
             }
-            .section {
-                margin: 0;
+
+            .contact-info-item,
+            .date {
+                font-size: 7pt;
             }
-            .section h2 { font-size: 1.0em; padding-bottom: 1px; margin-bottom: 1px; margin-top: 10px;}
-            .contact-info-item, .date, ul li { font-size: 0.8em; }
-            .cover-letter-link { 
+
+            .cover-letter-link {
                 color: var(--primary-color) !important;
-                text-decoration: none !important;
-                font-weight: bold !important;
+                text-decoration: underline !important;
+                font-weight: 700 !important;
             }
-            /* This rule is what hides the cover letter content in print mode */
+
+            /* The letter stays clickable on screen but is never included in print/PDF. */
             #cover-letter-content {
                 display: none !important;
             }
-            .job-entry, .education-entry, .skills-category {
-                box-shadow: none;
-                background-color: transparent;
-                padding: 4px;
-                margin-bottom: 2px;
+
+            .section {
+                margin: 0;
             }
-            ul {
-                margin-top: 0;
+
+            .section h2 {
+                font-size: 9pt;
+                padding-bottom: 1px;
+                margin: 5px 0 1px;
+                border-bottom-width: 1px;
             }
-            ul li {
-                margin-bottom: 0;
-                padding-right: 12px;
-            }
+
+            .job-entry,
+            .education-entry,
             .skills-category {
-                 padding: 4px;
+                box-shadow: none !important;
+                background: transparent !important;
+                padding: 2px 3px;
+                margin-bottom: 1px;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                transform: none !important;
             }
+
+            ul {
+                margin: 0;
+            }
+
+            ul li {
+                font-size: 7pt;
+                line-height: 1.1;
+                margin-bottom: 0;
+                padding-right: 10px;
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1px;
+            }
+
             .skills-category h3 {
-                margin-bottom: 2px;
-                padding-bottom: 2px;
+                font-size: 8pt;
+                margin-bottom: 1px;
+                padding-bottom: 1px;
             }
+
+            .skills-category ul li {
+                font-size: 6.7pt;
+            }
+
             .toast {
                 display: none !important;
             }
@@ -485,19 +568,28 @@
         
         <div id="cover-letter-content">
             <p><b>שלום רב,</b></p>
-            <p>אני פונה אליכם מתוך עניין רב במגוון תפקידים הדורשים שילוב של מיומנויות טכנולוגיות, יכולות ניהול וחשיבה אנליטית, יחד עם מוטיבציה לפיתוח אישי ומקצועי.</p>
-            <p>במהלך ניסיוני המקצועי, צברתי יכולות מוכחות בניהול מערכות מידע, אנליזת נתונים, פיתוח תוכנה וניהול פרויקטים טכנולוגיים. אני בעלת גישה אנליטית חזקה ורואה תמונה רחבה, תוך הקפדה על הפרטים הקטנים. יכולת למידה עצמאית ומהירה של כלים וטכנולוגיות חדשות היא מאפיין בולט בעבודתי, והוכחתי זאת בעבודתי כמפתחת וכמורה להנדסת תוכנה.</p>
-            <p>בתפקידי הקודם כאנליסטית מידע ורמ"ד קשרי מחקר, צברתי ניסיון קריטי. הניסיון שלי בניהול מידע ונתונים, לצד עבודתי עם צוותים שונים, הקנה לי את הכישורים להבין צרכים ארגוניים מורכבים ולייעל תהליכי עבודה. אני מאמינה כי יכולות אלו, בשילוב עם כישורי יחסי האנוש שלי, מאפשרות לי להוביל משימות בהצלחה ולעבוד בתיאום מלא עם כל הגורמים הרלוונטיים בארגון.</p>
-
+            <p>אני פונה אליכם מתוך עניין רב במגוון תפקידים הדורשים שילוב של מיומנויות טכנולוגיות, יכולות ניהול וארגון, וכישורי הדרכה והובלה. אני מאמינה כי הרקע המגוון שלי והניסיון שצברתי מאפשרים לי להשתלב במהירות ולתרום לארגונכם במגוון רחב של תפקידים, ובפרט במקצועות בתחום ההייטק, פיתוח, ניהול מוצר ורכז/ת מערכות מידע ונתונים.</p>
             <p>
-                <b>דוגמא לפרויקט אפליקטיבי | בינה מלאכותית:</b><br>
-                להורדת הסרטון
-                <a href="https://github.com/MORANHAI/ResumeMornay/raw/main/milogyEluMorany.mp4" target="_blank">לחץ כאן</a>
-                | לצפייה ישירה
-                <a href="https://did.li/moranyAppProjectG" target="_blank">לחץ כאן</a>
+                במהלך ניסיוני המקצועי, צברתי יכולות מוכחות בניהול מערכות מידע, אנליזת נתונים, פיתוח תוכנה וניהול פרויקטים טכנולוגיים. אני בעלת גישה אנליטית חזקה ורואה תמונה רחבה, תוך הקפדה על הפרטים הקטנים. יכולת למידה עצמאית ומהירה של כלים וטכנולוגיות חדשות היא מאפיין בולט בעבודתי, והוכחתי זאת בעבודתי כמפתחת וכמורה להנדסת תוכנה. 
             </p>
+ <p>בתפקידי הקודם כאנליסטית מידע ורמ"ד קשרי מחקר, צברתי ניסיון קריטי. הניסיון שלי בניהול מידע ונתונים, לצד עבודתי עם צוותים שונים, הקנה לי את הכישורים להבין צרכים ארגוניים מורכבים ולייעל תהליכי עבודה. אני מאמינה כי יכולות אלו, בשילוב עם כישורי יחסי האנוש שלי, מאפשרות לי להוביל משימות בהצלחה ולעבוד בתיאום מלא עם כל הגורמים הרלוונטיים בארגון.</p>            </p>
 
-            <p>אני רואה בכל תפקיד שליחות לפיתוח וייעול תהליכים, ואשמח להזדמנות להרחיב על כישוריי וניסיוני בראיון אישי.</p>
+
+                  <b>דוגמא לפרויקט אפליקטיבי | בינה מלאכותית:</b>
+<br>
+  להורדת הסרטון 
+  <a href="https://github.com/MORANHAI/ResumeMornay/raw/main/milogyEluMorany.mp4" target="_blank">לחץ כאן</a>
+  | לצפייה ישירה 
+  <a href="https://did.li/moranyAppProjectG" target="_blank">לחץ כאן</a>
+</p>
+
+ </p>
+
+
+
+
+            
+            <p>אני רואה בכל תפקיד שליחות לפיתוח וייעול תהליכים, ואשמח להזדמנות להרחיב על כישוריי וניסיוני בראיון אישי, ולדון כיצד אוכל לתרום באופן משמעותי לארגונכם.</p>
             <p><b>בכבוד רב,</b><br>מורן חיים</p>
         </div>
     
@@ -512,7 +604,7 @@
                     <span class="date">כיום</span>
                 </div>
                 <ul>
-                    <li>הנחיית פרויקטים אישיים לפיתוח אפליקציות, כולל ליווי מלא משלב הרעיון, דרך תכנון, פיתוח, ובדיקות.</li>
+                    <li>הנחיית פרויקטים אישיים לפיתוח אפליקציות, כולל ליווי מלא משלב הרעיון, דרך תכנון, פיתוח, ובדיקות קוד.</li>
                     <li>הכנת תלמידים לבחינות בגרות במסלול תכנון ותכנות מערכות.</li>
                     <li>ניהול מעקב ובקרה על התקדמות תלמידים.</li>
                     <li>הוראת מדעי המחשב, הנדסת תוכנה וכלכלה.</li>
@@ -685,6 +777,7 @@
                 // Correct code: hide login, show resume
                 loginPage.style.display = 'none';
                 resumePage.style.display = 'grid';
+                document.body.classList.add('resume-authenticated');
 
                 // Start the 10-minute timer for automatic logout (600,000 milliseconds)
                 resumeTimerId = setTimeout(() => {
@@ -694,6 +787,7 @@
                     // Log out the user by showing the login page again and clearing the input
                     loginPage.style.display = 'flex';
                     resumePage.style.display = 'none';
+                    document.body.classList.remove('resume-authenticated');
                     document.getElementById('access-code').value = '';
                     errorMessage.classList.remove('visible');
                     console.log("Automatically logged out after 10 minutes.");
