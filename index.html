@@ -384,19 +384,19 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 4mm;
+                margin: 8mm;
             }
             html, body {
-                width: auto;
-                min-height: 0;
+                width: 100%;
+                height: 100%;
                 margin: 0 !important;
                 padding: 0 !important;
                 background: #fff !important;
             }
             body {
                 display: block !important;
-                font-size: 7.8pt;
-                line-height: 1.1;
+                font-size: 9.8pt;
+                line-height: 1.32;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -411,47 +411,48 @@
                 display: none !important;
             }
             body.resume-authenticated #resume-page {
-                display: grid !important;
-                grid-template-columns: 1fr;
+                display: flex !important;
+                flex-direction: column;
+                justify-content: space-between;
                 width: 100% !important;
                 max-width: none !important;
-                min-height: 0 !important;
+                min-height: 277mm !important;
                 margin: 0 !important;
-                padding: 0 !important;
-                gap: 0;
+                padding: 4mm 6mm !important;
+                box-sizing: border-box !important;
                 box-shadow: none !important;
                 border: 0 !important;
                 border-radius: 0 !important;
-                font-size: 7.8pt;
-                line-height: 1.1;
-                zoom: 0.86;
+                font-size: 9.8pt;
+                line-height: 1.32;
+                zoom: 1;
             }
             .bsd {
-                top: 0;
-                right: 0;
-                font-size: 7pt;
+                top: 2mm;
+                right: 4mm;
+                font-size: 8.5pt;
             }
             .header {
-                padding-bottom: 2px;
-                margin: 4px 0 2px;
+                padding-bottom: 6px;
+                margin: 4px 0 6px;
             }
             .header h1 {
-                font-size: 14.5pt;
-                margin-bottom: 1px;
+                font-size: 19.5pt;
+                margin-bottom: 3px;
             }
             .header p {
-                font-size: 8pt;
+                font-size: 10.5pt;
             }
             .contact-info {
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                gap: 2px 7px;
-                margin-top: 2px;
+                gap: 4px 12px;
+                margin-top: 5px;
             }
             .contact-info-item,
             .date {
-                font-size: 7pt;
+                font-size: 8.8pt;
             }
             .cover-letter-link {
                 color: var(--primary-color) !important;
@@ -462,50 +463,52 @@
                 display: none !important;
             }
             .section {
-                margin: 0;
+                margin: 2px 0;
             }
             .section h2 {
-                font-size: 8.8pt;
-                padding-bottom: 1px;
-                margin: 4px 0 1px;
-                border-bottom-width: 1px;
+                font-size: 11.5pt;
+                padding-bottom: 2px;
+                margin: 6px 0 4px;
+                border-bottom-width: 1.5px;
             }
             .job-entry,
             .education-entry,
             .skills-category {
                 box-shadow: none !important;
-                background: transparent !important;
-                padding: 1.5px 3px;
-                margin-bottom: 1px;
+                background: #F8F9FA !important;
+                padding: 5px 8px;
+                margin-bottom: 4px;
                 break-inside: avoid;
                 page-break-inside: avoid;
                 transform: none !important;
             }
             ul {
-                margin: 0;
+                margin: 2px 0 0;
             }
             ul li {
-                font-size: 6.9pt;
-                line-height: 1.08;
-                margin-bottom: 0;
-                padding-right: 10px;
+                font-size: 8.9pt;
+                line-height: 1.28;
+                margin-bottom: 2px;
+                padding-right: 12px;
             }
             .skills-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 1px;
+                gap: 4px;
             }
             .skills-category h3 {
-                font-size: 7.8pt;
-                margin-bottom: 1px;
-                padding-bottom: 1px;
+                font-size: 9.8pt;
+                margin-bottom: 3px;
+                padding-bottom: 2px;
             }
             .skills-category ul li {
-                font-size: 6.6pt;
+                font-size: 8.5pt;
+                line-height: 1.25;
             }
             .toast {
                 display: none !important;
             }
         }
+
     </style>
 </head>
 <body>
