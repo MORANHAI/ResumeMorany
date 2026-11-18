@@ -9,9 +9,9 @@
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
         :root {
-            --primary-color: #34525B; /* Dark blue-grey */
-            --secondary-color: #5C4B33; /* Olive green */
-            --accent-color: #4B335C; /* Dark purple */
+            --primary-color: #34525B;
+            --secondary-color: #5C4B33;
+            --accent-color: #4B335C;
             --text-color: #2F3640;
             --light-text-color: #6C7A89;
             --bg-color: #F8F9FA;
@@ -33,8 +33,7 @@
             align-items: center;
             min-height: 100vh;
         }
-        
-        /* General styling for both pages */
+
         .page-container {
             width: 100%;
             max-width: 900px;
@@ -47,7 +46,6 @@
             position: relative;
         }
 
-        /* Styling for the login page */
         #login-page {
             display: flex;
             flex-direction: column;
@@ -74,7 +72,7 @@
             max-width: 300px;
             margin-bottom: 10px;
         }
-        
+
         .login-input {
             width: 100%;
             padding: 12px;
@@ -84,14 +82,14 @@
             font-size: 1em;
             text-align: center;
             transition: border-color 0.3s ease;
-            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+            box-sizing: border-box;
         }
 
         .login-input:focus {
             outline: none;
             border-color: var(--secondary-color);
         }
-        
+
         .password-toggle {
             position: absolute;
             top: 50%;
@@ -131,14 +129,13 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         #error-message.visible {
             opacity: 1;
         }
 
-        /* Styling for the resume page */
         #resume-page {
-            display: none; /* Hidden by default */
+            display: none;
             padding: 8px;
             gap: 1px;
             grid-template-columns: 1fr;
@@ -159,9 +156,9 @@
             padding-bottom: 5px;
             border-bottom: 3px solid var(--accent-color);
             margin-bottom: 3px;
-            margin-top: 15px; /* Increased the gap here */
+            margin-top: 15px;
         }
-        
+
         .header h1 {
             font-size: 2.2em;
             margin: 0 0 3px 0;
@@ -183,7 +180,7 @@
             margin-top: 3px;
             align-items: center;
         }
-        
+
         .contact-info-item {
             display: flex;
             align-items: center;
@@ -197,11 +194,11 @@
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
+
         .contact-info-item a.cover-letter-link {
-             font-size: 0.8em;
-             text-decoration: underline;
-             cursor: pointer;
+            font-size: 0.8em;
+            text-decoration: underline;
+            cursor: pointer;
         }
 
         .contact-info-item a:hover {
@@ -212,7 +209,7 @@
             color: var(--accent-color);
             font-size: 1em;
         }
-        
+
         #cover-letter-content {
             background-color: #fdfdfd;
             padding: 0;
@@ -227,7 +224,7 @@
         }
 
         #cover-letter-content.visible {
-            max-height: 2000px; /* Increased for reliability */
+            max-height: 2000px;
             padding: 15px;
             margin: 10px 0;
             opacity: 1;
@@ -242,16 +239,16 @@
             color: var(--primary-color);
             padding-bottom: 3px;
             border-bottom: 2px solid var(--secondary-color);
-            margin-top: 30px; /* Adjusted the gap here */
+            margin-top: 20px;
             margin-bottom: 3px;
             font-weight: 700;
         }
-        
+
         .section h2 i {
             margin-left: 5px;
             color: var(--secondary-color);
         }
-        
+
         .job-entry, .education-entry {
             background-color: var(--bg-color);
             border-radius: 6px;
@@ -264,7 +261,7 @@
         .job-entry:hover, .education-entry:hover {
             transform: translateY(-3px);
         }
-        
+
         .job-title, .degree {
             font-weight: 700;
             color: var(--secondary-color);
@@ -276,7 +273,7 @@
             color: var(--light-text-color);
             margin-top: 3px;
         }
-        
+
         .job-header {
             display: flex;
             justify-content: space-between;
@@ -301,7 +298,7 @@
             color: var(--text-color);
             font-size: 0.9em;
         }
-        
+
         .skills-category ul li {
             font-size: 0.8em;
         }
@@ -315,13 +312,13 @@
             line-height: 1;
             font-weight: bold;
         }
-        
+
         .skills-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 0;
         }
-        
+
         .skills-category {
             background-color: var(--bg-color);
             padding: 6px;
@@ -330,7 +327,7 @@
             margin: 0;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
         }
-        
+
         .skills-category h3 {
             font-size: 1em;
             color: var(--secondary-color);
@@ -343,17 +340,17 @@
         .skills-category:not(.full-width-skill):nth-child(even) {
             margin-right: 2px;
         }
+
         .skills-category:not(.full-width-skill):nth-child(odd) {
             margin-left: 2px;
         }
-        
+
         .full-width-skill {
             grid-column: 1 / -1;
             margin: 0;
             border-radius: 6px;
         }
-        
-        /* Toast notification styling */
+
         .toast {
             visibility: hidden;
             min-width: 250px;
@@ -378,20 +375,17 @@
             transition: opacity 0.5s;
         }
 
-
         @media (max-width: 768px) {
             body { padding: 5px; }
             .cv-container { padding: 10px; }
             .contact-info { flex-direction: column; align-items: flex-end; }
         }
 
-        /* Print layout: authenticated resume only, compacted for one A4 page. */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 5mm;
+                margin: 4mm;
             }
-
             html, body {
                 width: auto;
                 min-height: 0;
@@ -399,29 +393,23 @@
                 padding: 0 !important;
                 background: #fff !important;
             }
-
             body {
                 display: block !important;
-                font-size: 8pt;
-                line-height: 1.12;
+                font-size: 7.8pt;
+                line-height: 1.1;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-
-            /* Printing the CV is available only after successful login. */
             body:not(.resume-authenticated) #login-page {
                 display: flex !important;
             }
-
             body:not(.resume-authenticated) #resume-page {
                 display: none !important;
             }
-
             body.resume-authenticated #login-page,
             #logout-toast {
                 display: none !important;
             }
-
             body.resume-authenticated #resume-page {
                 display: grid !important;
                 grid-template-columns: 1fr;
@@ -434,32 +422,26 @@
                 box-shadow: none !important;
                 border: 0 !important;
                 border-radius: 0 !important;
-                font-size: 8pt;
-                line-height: 1.12;
-                /* Chrome/Edge use this to fit the compact CV to the printable page. */
-                zoom: 0.92;
+                font-size: 7.8pt;
+                line-height: 1.1;
+                zoom: 0.86;
             }
-
             .bsd {
                 top: 0;
                 right: 0;
                 font-size: 7pt;
             }
-
             .header {
-                padding-bottom: 3px;
-                margin: 5px 0 2px;
+                padding-bottom: 2px;
+                margin: 4px 0 2px;
             }
-
             .header h1 {
-                font-size: 15pt;
+                font-size: 14.5pt;
                 margin-bottom: 1px;
             }
-
             .header p {
                 font-size: 8pt;
             }
-
             .contact-info {
                 flex-direction: row;
                 justify-content: center;
@@ -467,72 +449,59 @@
                 gap: 2px 7px;
                 margin-top: 2px;
             }
-
             .contact-info-item,
             .date {
                 font-size: 7pt;
             }
-
             .cover-letter-link {
                 color: var(--primary-color) !important;
                 text-decoration: underline !important;
                 font-weight: 700 !important;
             }
-
-            /* The letter stays clickable on screen but is never included in print/PDF. */
             #cover-letter-content {
                 display: none !important;
             }
-
             .section {
                 margin: 0;
             }
-
             .section h2 {
-                font-size: 9pt;
+                font-size: 8.8pt;
                 padding-bottom: 1px;
-                margin: 5px 0 1px;
+                margin: 4px 0 1px;
                 border-bottom-width: 1px;
             }
-
             .job-entry,
             .education-entry,
             .skills-category {
                 box-shadow: none !important;
                 background: transparent !important;
-                padding: 2px 3px;
+                padding: 1.5px 3px;
                 margin-bottom: 1px;
                 break-inside: avoid;
                 page-break-inside: avoid;
                 transform: none !important;
             }
-
             ul {
                 margin: 0;
             }
-
             ul li {
-                font-size: 7pt;
-                line-height: 1.1;
+                font-size: 6.9pt;
+                line-height: 1.08;
                 margin-bottom: 0;
                 padding-right: 10px;
             }
-
             .skills-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 1px;
             }
-
             .skills-category h3 {
-                font-size: 8pt;
+                font-size: 7.8pt;
                 margin-bottom: 1px;
                 padding-bottom: 1px;
             }
-
             .skills-category ul li {
-                font-size: 6.7pt;
+                font-size: 6.6pt;
             }
-
             .toast {
                 display: none !important;
             }
@@ -556,7 +525,7 @@
         <div class="bsd">ב"ה</div>
         <div class="header">
             <h1>♦︎מורן חיים♦︎</h1>
-            <p>מורה להנדסת תוכנה ומפתחת אפליקציות</p>
+            <p>מורה ומנחה להנדסת תוכנה (5 יח"ל), מדעי המחשב (5 יח"ל), חדשנות AI ופיתוח אפליקציות</p>
             <div class="contact-info">
                 <div class="contact-info-item"><i class="fas fa-mobile-alt"></i> 054-5210843</div>
                 <div class="contact-info-item"><i class="fas fa-envelope"></i> <a href="mailto:your.email@example.com">moranyhaim@gmail.com</a></div>
@@ -565,80 +534,89 @@
                 <div class="contact-info-item"><i class="fas fa-file-alt"></i> <a class="cover-letter-link" id="toggle-cover-letter">מכתב מקדים</a></div>
             </div>
         </div>
-        
+
         <div id="cover-letter-content">
             <p><b>שלום רב,</b></p>
-            <p>אני פונה אליכם מתוך עניין רב במגוון תפקידים הדורשים שילוב של מיומנויות טכנולוגיות, יכולות ניהול וארגון, וכישורי הדרכה והובלה. אני מאמינה כי הרקע המגוון שלי והניסיון שצברתי מאפשרים לי להשתלב במהירות ולתרום לארגונכם במגוון רחב של תפקידים, ובפרט במקצועות בתחום ההייטק, פיתוח, ניהול מוצר ורכז/ת מערכות מידע ונתונים.</p>
+            <p>כאשת מקצוע מולטי-דיסציפלינרית ואוטודידקטית, אני מביאה איתי שילוב ייחודי של הוראה, פיתוח אפליקציות, הרצאה באקדמיה והטמעת כלי בינה מלאכותית (AI) מתקדמים בתהליכי למידה. מעבר להובלת הנדסת תוכנה (5 יח"ל) ומדעי המחשב (5 יח"ל), היכולת שלי ללמוד ולהתעדכן באופן שוטף מאפשרת לי להוביל גם תחומים טכנולוגיים משיקים כגון <b>ניהול מערכות מידע, מדעי הנתונים (Data Science), סייבר ותקשוב</b>.</p>
+            <p>בעבודתי היה לי חשוב תמיד לפעול בהיקפים נרחבים המשלבים הוראה עם עשייה טכנולוגית ואקדמית, והובלתי תלמידים להצטיינות יתרה בהנדסת תוכנה ובבניית פרויקטי פיתוח מורכבים בפלטפורמות מגוונות,תוך העצמה אישית, יצירת מוטיבציה ומתן כלים פרקטיים המאפשרים לכל תלמיד להגיע להישגים גבוהים חרף כל אתגר.</p>
             <p>
-                במהלך ניסיוני המקצועי, צברתי יכולות מוכחות בניהול מערכות מידע, אנליזת נתונים, פיתוח תוכנה וניהול פרויקטים טכנולוגיים. אני בעלת גישה אנליטית חזקה ורואה תמונה רחבה, תוך הקפדה על הפרטים הקטנים. יכולת למידה עצמאית ומהירה של כלים וטכנולוגיות חדשות היא מאפיין בולט בעבודתי, והוכחתי זאת בעבודתי כמפתחת וכמורה להנדסת תוכנה. 
+                <b>דוגמא לפרויקט אפליקטיבי | בינה מלאכותית:</b><br>
+                להורדת הסרטון <a href="https://github.com/MORANHAI/ResumeMornay/raw/main/milogyEluMorany.mp4" target="_blank">לחץ כאן</a> | לצפייה ישירה <a href="https://did.li/moranyAppProjectG" target="_blank">לחץ כאן</a>
             </p>
- <p>בתפקידי הקודם כאנליסטית מידע ורמ"ד קשרי מחקר, צברתי ניסיון קריטי. הניסיון שלי בניהול מידע ונתונים, לצד עבודתי עם צוותים שונים, הקנה לי את הכישורים להבין צרכים ארגוניים מורכבים ולייעל תהליכי עבודה. אני מאמינה כי יכולות אלו, בשילוב עם כישורי יחסי האנוש שלי, מאפשרות לי להוביל משימות בהצלחה ולעבוד בתיאום מלא עם כל הגורמים הרלוונטיים בארגון.</p>            </p>
-
-
-                  <b>דוגמא לפרויקט אפליקטיבי | בינה מלאכותית:</b>
-<br>
-  להורדת הסרטון 
-  <a href="https://github.com/MORANHAI/ResumeMornay/raw/main/milogyEluMorany.mp4" target="_blank">לחץ כאן</a>
-  | לצפייה ישירה 
-  <a href="https://did.li/moranyAppProjectG" target="_blank">לחץ כאן</a>
-</p>
-
- </p>
-
-
-
-
-            
-            <p>אני רואה בכל תפקיד שליחות לפיתוח וייעול תהליכים, ואשמח להזדמנות להרחיב על כישוריי וניסיוני בראיון אישי, ולדון כיצד אוכל לתרום באופן משמעותי לארגונכם.</p>
+            <p>אשמח לשמוע פרטים נוספים על המשרה ובהתאם להשתלב בצוות החינוכי, לקדם יחד איתכם את התלמידים להישגים מצוינים ולהעניק להם כלים להצלחה בתחום ובחיים.</p>
             <p><b>בכבוד רב,</b><br>מורן חיים</p>
         </div>
-    
+
         <div class="section">
             <h2><i class="fas fa-briefcase"></i> ניסיון תעסוקתי</h2>
             <div class="job-entry">
                 <div class="job-header">
                     <div>
-                        <span class="job-title">מורה למדעי המחשב, הנדסת תוכנה וכלכלה</span>
-                        <span class="company-name">חטיבה עליונה</span>
+                        <span class="job-title">מורה ומנחה להנדסת תוכנה (5 יח"ל), מדעי המחשב (5 יח"ל) וחינוך פיננסי</span>
+                        <span class="company-name">מערכת החינוך</span>
                     </div>
-                    <span class="date">כיום – 2018</span>
+                    <span class="date">2018 – 2026</span>
                 </div>
                 <ul>
-                    <li>הנחיית פרויקטים אישיים לפיתוח אפליקציות, כולל ליווי מלא משלב הרעיון, דרך תכנון, פיתוח, ובדיקות קוד.</li>
-                    <li>הכנת תלמידים לבחינות בגרות במסלול תכנון ותכנות מערכות.</li>
-                    <li>ניהול מעקב ובקרה על התקדמות תלמידים.</li>
-                    <li>הוראת מדעי המחשב, הנדסת תוכנה וכלכלה.</li>
+                    <li>הובלת תלמידים לאחוזי הצטיינות גבוהים בהנדסת תוכנה (5 יח"ל), לצד הוראת מדעי המחשב (5 יח"ל) וחינוך פיננסי תוך העצמה אישית ומינוף הישגים.</li>
+                    <li>הנחיה וליווי מקצה לקצה של פרויקטי גמר בפיתוח אפליקציות בפלטפורמות שונות (Android, Web, App Inventor) — משלב האפיון והתכנון ועד כתיבת הקוד, בדיקות QA והגנה בפני בוחנים.</li>
+                    <li>בניית מערכי שיעור חדשניים המשלבים כלי AI, סימולציות ומבחני מתכונת, וניהול מעקב פרטני לקידום כל תלמיד.</li>
                 </ul>
             </div>
-            
+
             <div class="job-entry">
                 <div class="job-header">
                     <div>
-                        <span class="job-title">מפתחת אתרי אינטרנט ואפליקציות</span>
-                        <span class="company-name">חברה למחקר</span>
+                        <span class="job-title">מנחה ומדריכת חדשנות, בינה מלאכותית (AI) ופיתוח אפליקציות</span>
+                        <span class="company-name">הכשרות וסדנאות לצוותים מקצועיים ואנשי חינוך</span>
                     </div>
-                    <span class="date">2017 - 2020</span>
+                    <span class="date">2025</span>
                 </div>
                 <ul>
-                    <li>פיתוח אתרים דינמיים במגוון שפות תכנות.</li>
-                    <li>פיתוח בסביבות ענן כמו Wix ו-WordPress.</li>
-                    <li>עדכון ועריכת תכנים באתרי אינטרנט.</li>
+                    <li>הנחיית סדנאות מעשיות להטמעת כלי AI מתקדמים, כולל יצירת אוואטרים אינטראקטיביים (D-ID) ובניית סוכני שיחה (צ'אטבוטים) ייעודיים המותאמים לצורכי הארגון.</li>
+                    <li>העברת הדרכות "טעימה מחשובית" בפיתוח אפליקציות בסביבת App Inventor 2, כולל בניית ערכת הדרכה מלאה עם קישורים ומסמך הנחיות להמשך עבודה עצמאית.</li>
                 </ul>
             </div>
-            
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">מרצה ומפתחת קורס אקדמי מתוקשב</span>
+                        <span class="company-name">אוניברסיטת בר-אילן</span>
+                    </div>
+                    <span class="date">2020 – 2021</span>
+                </div>
+                <ul>
+                    <li>תכנון, אפיון ופיתוח מלא של קורס אקדמי סמסטריאלי ללמידה מרחוק (Online), כולל בניית סילבוס והפקת תכני למידה דיגיטליים.</li>
+                    <li>הוראה שוטפת של הקורס לאורך הסמסטר, ליווי והנחיית לומדים מרחוק והערכת הישגים.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">מפתחת תוכנה, אתרי אינטרנט ואפליקציות (פרויקטים ופרילנס)</span>
+                        <span class="company-name">מגזר עסקי, מחקרי והתמחות מעשית</span>
+                    </div>
+                    <span class="date">2016 – 2020</span>
+                </div>
+                <ul>
+                    <li>פיתוח יישומים, אתרים דינמיים, אפליקציות ומערכות מידע מקצה לקצה בסביבת Java ומגוון שפות תכנות, כולל עבודה מול מסדי נתונים.</li>
+                    <li>אפיון, בנייה וניהול פלטפורמות ווב מבוססות ענן (WordPress, Wix), הטמעת מערכות ניהול תוכן וביצוע פרויקטים עבור לקוחות.</li>
+                </ul>
+            </div>
+
             <div class="job-entry">
                 <div class="job-header">
                     <div>
                         <span class="job-title">רמ"ד קשרי מחקר ואנליסטית מידע</span>
-                        <span class="company-name">אוניברסיטת אריאל</span>
+                        <span class="company-name">אוניברסיטת אריאל בשומרון</span>
                     </div>
-                    <span class="date">2014 - 2015</span>
+                    <span class="date">2014 – 2015</span>
                 </div>
                 <ul>
-                    <li>ניטור, עריכה וניהול מאגר נתונים פנימי.</li>
-                    <li>ניהול אתר אינטרנט של החברה.</li>
-                    <li>איסוף מידע, מעקב ובקרה, עריכת דוחות.</li>
-                    <li>הדרכה וסיוע לחוקרים בהכנת הצעות מחקר.</li>
+                    <li>ניהול, ניטור וטיוב מאגרי נתונים מחקריים פנימיים, איסוף מידע והפקת דוחות אנליטיים להנהלה.</li>
+                    <li>הדרכה, ייעוץ וליווי מקצועי לחוקרים באקדמיה בתהליכי הגשה של הצעות מחקר וניהול אתר האינטרנט של היחידה.</li>
                 </ul>
             </div>
         </div>
@@ -648,164 +626,127 @@
             <div class="education-entry">
                 <div class="job-header">
                     <div>
-                        <span class="degree">תעודת הוראה</span>
-                        <span class="institution-name">אוניברסיטת בר אילן</span>
+                        <span class="degree">תעודת הוראה לאקדמאים (ממוצע 96.5)</span>
+                        <span class="institution-name">אוניברסיטת בר-אילן</span>
                     </div>
-                    <span class="date">2019-2020</span>
+                    <span class="date">2019 – 2020</span>
                 </div>
-                <ul>
-                    <li>תכנית לימודים לתעודת הוראה לאקדמאים.</li>
-                    <li>ממוצע ציונים 96.5.</li>
-                </ul>
             </div>
-
             <div class="education-entry">
                 <div class="job-header">
                     <div>
-                        <span class="degree">תואר שני במידענות וטכנולוגיות ווב</span>
-                        <span class="institution-name">אוניברסיטת בר אילן</span>
+                        <span class="degree">תואר שני (M.A) במידענות וטכנולוגיות ווב</span>
+                        <span class="institution-name">אוניברסיטת בר-אילן</span>
                     </div>
-                    <span class="date">2015-2017</span>
+                    <span class="date">2015 – 2017</span>
                 </div>
                 <ul>
-                    <li>קורסים עיקריים: מדעי המחשב, טכנולוגיות מידע, מסדי נתונים, ניהול אתרים.</li>
+                    <li>התמחות במדעי המחשב, טכנולוגיות מידע, מסדי נתונים, ארכיטקטורת מידע וניהול אתרים.</li>
                 </ul>
             </div>
-
             <div class="education-entry">
                 <div class="job-header">
                     <div>
-                        <span class="degree">תואר ראשון בפסיכולוגיה וקרימינולוגיה</span>
-                        <span class="institution-name">אוניברסיטת בר אילן</span>
+                        <span class="degree">תואר ראשון (B.A) בפסיכולוגיה וקרימינולוגיה</span>
+                        <span class="institution-name">אוניברסיטת בר-אילן</span>
                     </div>
-                    <span class="date">2010-2014</span>
+                    <span class="date">2010 – 2014</span>
                 </div>
             </div>
         </div>
-        
+
         <div class="section">
             <h2><i class="fas fa-cogs"></i> מיומנויות</h2>
             <div class="skills-container">
                 <div class="skills-category">
-                    <h3>פיתוח ותכנות</h3>
+                    <h3>פיתוח, תכנות ותחומי הוראה</h3>
                     <ul>
-                        <li>פיתוח אפליקציות: App Inventor, Android, Java & JEE.</li>
-                        <li>פיתוח אתרים: Wix, WordPress, Joomla.</li>
-                        <li>שפות תכנות: C#, HTML, JS, SQL, CSS, JAVA, PHP, jQuery, XML, ASP.NET.</li>
-                        <li>מסדי נתונים: MySQL, Firebase.</li>
-                        <li>כלי עזר לתכנות: Cursor.</li>
+                        <li>תחומי הוראה: הנדסת תוכנה, מדעי המחשב, ניהול מערכות מידע, Data Science, סייבר ותקשוב.</li>
+                        <li>פיתוח אפליקציות ואתרים: Android, Java & JEE, App Inventor 2, WordPress, Wix.</li>
+                        <li>שפות תכנות ומסדי נתונים: C#, Python, Java, JS, PHP, ASP.NET, HTML, CSS, SQL, MySQL, Firebase.</li>
                     </ul>
                 </div>
-
+                <div class="skills-category">
+                    <h3>חדשנות ובינה מלאכותית (AI)</h3>
+                    <ul>
+                        <li>פיתוח מהיר מבוסס AI (Vibe Coding), הנדסת פרומפטים ובניית סוכני שיחה מותאמים.</li>
+                        <li>כלי AI לקוד, מחקר וכתיבה: Cursor, ChatGPT, Gemini, DeepSeek.</li>
+                        <li>כלי AI ליצירת אוואטרים, מדיה ועיצוב: D-ID, Leonardo AI, Ideogram, Canva, Gimp.</li>
+                    </ul>
+                </div>
                 <div class="skills-category">
                     <h3>מערכות וכלים נוספים</h3>
                     <ul>
                         <li>Microsoft Office (Excel, Word, PowerPoint).</li>
-                        <li>Google Analytics.</li>
-                        <li>Priority Hilan.</li>
-                        <li>SPSS.</li>
-                        <li>Windows.</li>
-                        <li>Bootstrap.</li>
-                        <li>Flash.</li>
-                        <li>Padlet.</li>
+                        <li>ניתוח נתונים ו-BI: SPSS, Google Analytics.</li>
+                        <li>מערכות ארגוניות והוראה: Priority, Hilan, Padlet, Windows.</li>
                     </ul>
                 </div>
-                
                 <div class="skills-category">
-                    <h3>עיצוב ותוכנות AI גנריות</h3>
+                    <h3>חוזקות וכישורים אישיים</h3>
                     <ul>
-                        <li>כלי AI ליצירת תוכן וכתיבה: Gemini, ChatGPT, וכו'.</li>
-                        <li>כלי AI ליצירת תמונות: Leonardo AI, Ideogram, deepseek  , וכו'.</li>
-                        <li>תוכנות גרפיות: Canva, Gimp.</li>
+                        <li>חריצות, מסירות ואחריות גבוהה — מכוונת לעבודה נרחבת מעבר למשרה מלאה.</li>
+                        <li>אוטודידקטית, מולטי-דיסציפלינרית ומתעדכנת באופן שוטף בטכנולוגיות קצה.</li>
+                        <li>יחסי אנוש מצוינים, הובלה והעצמת תלמידים וצוותים להישגים גבוהים.</li>
                     </ul>
                 </div>
-
-                <div class="skills-category">
-                    <h3>כישורים נוספים</h3>
-                    <ul>
-                        <li>יחסי אנוש מצוינים.</li>
-                        <li>יכולת חשיבה וניתוח.</li>
-                        <li>עבודה בצוות.</li>
-                        <li>מסירות ואחריות.</li>
-                        <li>יכולת טיפול במספר משימות במקביל.</li>
-                    </ul>
-                </div>
-
                 <div class="skills-category full-width-skill">
                     <h3>שפות</h3>
                     <ul>
-                        <li>עברית: שפת אם.</li>
-                        <li>אנגלית: טובה מאוד.</li>
+                        <li>עברית: שפת אם | אנגלית: טובה מאוד.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div id="logout-toast" class="toast">
         התנתקת אוטומטית עקב חוסר פעילות.
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
-        // JavaScript for the login functionality
         let resumeTimerId;
 
-        // Function to show the toast message
         function showToast(message) {
             const toast = document.getElementById('logout-toast');
             toast.textContent = message;
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3000); // Hide the toast after 3 seconds
+            }, 3000);
         }
 
         document.getElementById('access-button').addEventListener('click', function() {
-            // The pre-computed hash of the secret code "123"
             const SECRET_HASH = "81fd7a736352b72891aed07d5c2caae320912ec884b69a41492e81377d6ae2d0";
-            
             const inputCode = document.getElementById('access-code').value;
             const loginPage = document.getElementById('login-page');
             const resumePage = document.getElementById('resume-page');
             const errorMessage = document.getElementById('error-message');
-            
-            // Hash the user's input and convert it to a string
             const inputHash = CryptoJS.SHA256(inputCode).toString(CryptoJS.enc.Hex);
 
             if (inputHash === SECRET_HASH) {
-                // Correct code: hide login, show resume
                 loginPage.style.display = 'none';
                 resumePage.style.display = 'grid';
                 document.body.classList.add('resume-authenticated');
-
-                // Start the 10-minute timer for automatic logout (600,000 milliseconds)
                 resumeTimerId = setTimeout(() => {
-                    // Show the toast before logging out
                     showToast("התנתקת אוטומטית עקב חוסר פעילות");
-                    
-                    // Log out the user by showing the login page again and clearing the input
                     loginPage.style.display = 'flex';
                     resumePage.style.display = 'none';
                     document.body.classList.remove('resume-authenticated');
                     document.getElementById('access-code').value = '';
                     errorMessage.classList.remove('visible');
-                    console.log("Automatically logged out after 10 minutes.");
-                }, 600000); // 10 minutes = 1000 * 60 * 10 = 600000 ms
-
+                }, 600000);
             } else {
-                // Incorrect code: show error message
                 errorMessage.classList.add('visible');
             }
         });
 
-        // JavaScript for the cover letter toggle
         document.getElementById('toggle-cover-letter').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('cover-letter-content').classList.toggle('visible');
         });
 
-        // JavaScript for the password visibility toggle
         document.getElementById('toggle-password').addEventListener('click', function() {
             const passwordInput = document.getElementById('access-code');
             const icon = this;
@@ -815,15 +756,12 @@
                 passwordInput.type = "text";
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');
-                
-                // Set a timeout to revert after 2 seconds
                 timeoutId = setTimeout(() => {
                     passwordInput.type = "password";
                     icon.classList.remove('fa-eye-slash');
                     icon.classList.add('fa-eye');
                 }, 2000);
             } else {
-                // Clear any existing timeout and switch back immediately
                 clearTimeout(timeoutId);
                 passwordInput.type = "password";
                 icon.classList.remove('fa-eye-slash');
@@ -833,3 +771,4 @@
     </script>
 </body>
 </html>
+
