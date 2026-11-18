@@ -187,28 +187,52 @@
             gap: 5px;
             color: var(--text-color);
             font-size: 0.8em;
+            transition: transform 0.25s ease;
         }
 
         .contact-info-item a {
             color: var(--text-color);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.25s ease;
+        }
+        .contact-info-item a:hover {
+            color: var(--accent-color);
+            font-weight: 700;
+            transform: translateY(-1px);
         }
 
+        
         .contact-info-item a.cover-letter-link {
             font-size: 0.8em;
             text-decoration: underline;
             cursor: pointer;
         }
 
-        .contact-info-item a:hover {
-            color: var(--primary-color);
-        }
-
+        
         .contact-info-item i {
             color: var(--accent-color);
             font-size: 1em;
+            transition: all 0.25s ease;
         }
+
+/* אפקט מעבר סגול על הטקסט והאייקון יחד בריחוף מעל קישור */
+        .contact-info-item:has(a):hover {
+            transform: translateY(-1px);
+        }
+        .contact-info-item:has(a):hover a,
+        .contact-info-item:has(a):hover i {
+            background: linear-gradient(45deg, #4B335C, #8E44AD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #7D3C98; /* צבע גיבוי */
+            font-weight: 700;
+        }
+
+
+
+
+
+        
 
         #cover-letter-content {
             background-color: #fdfdfd;
@@ -508,7 +532,6 @@
                 display: none !important;
             }
         }
-
     </style>
 </head>
 <body>
