@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✦מורן חיים✦</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        :root {
+            --primary-color: #34525B;
+            --secondary-color: #5C4B33;
+            --accent-color: #4B335C;
+            --text-color: #2F3640;
+            --light-text-color: #6C7A89;
+            --bg-color: #F8F9FA;
+            --section-bg: #FFFFFF;
+            --border-color: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            direction: rtl;
+            text-align: right;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--section-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: opacity 0.5s ease-in-out;
+            position: relative;
+        }
+
+        #login-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #login-page h1 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        #login-page p {
+            font-size: 1.1em;
+            color: var(--light-text-color);
+            margin-bottom: 20px;
+        }
+
+        .password-container {
+            position: relative;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 10px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1em;
+            text-align: center;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: var(--light-text-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        .login-button {
+            width: 80%;
+            max-width: 300px;
+            padding: 12px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #4B3928;
+        }
+
+        #error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #error-message.visible {
+            opacity: 1;
+        }
+
+        #resume-page {
+            display: none;
+            padding: 8px;
+            gap: 1px;
+            grid-template-columns: 1fr;
+        }
+
+        .bsd {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 11px;
+            color: #000;
+            z-index: 1000;
+            font-weight: 400;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 3px solid var(--accent-color);
+            margin-bottom: 3px;
+            margin-top: 15px;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin: 0 0 3px 0;
+            color: var(--primary-color);
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 1em;
+            color: var(--light-text-color);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px 10px;
+            margin-top: 3px;
+            align-items: center;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-color);
+            font-size: 0.8em;
+        }
+
+        .contact-info-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info-item a.cover-letter-link {
+            font-size: 0.8em;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .contact-info-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info-item i {
+            color: var(--accent-color);
+            font-size: 1em;
+        }
+
+        #cover-letter-content {
+            background-color: #fdfdfd;
+            padding: 0;
+            margin: 0;
+            border-radius: 8px;
+            border-right: 4px solid var(--secondary-color);
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out, margin 0.5s ease-out, opacity 0.3s ease-in;
+            font-size: 0.9em;
+        }
+
+        #cover-letter-content.visible {
+            max-height: 2000px;
+            padding: 15px;
+            margin: 10px 0;
+            opacity: 1;
+        }
+
+        .section {
+            margin: 1px 0;
+        }
+
+        .section h2 {
+            font-size: 1.4em;
+            color: var(--primary-color);
+            padding-bottom: 3px;
+            border-bottom: 2px solid var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 3px;
+            font-weight: 700;
+        }
+
+        .section h2 i {
+            margin-left: 5px;
+            color: var(--secondary-color);
+        }
+
+        .job-entry, .education-entry {
+            background-color: var(--bg-color);
+            border-radius: 6px;
+            padding: 8px;
+            margin-bottom: 3px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .job-entry:hover, .education-entry:hover {
+            transform: translateY(-3px);
+        }
+
+        .job-title, .degree {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1em;
+        }
+
+        .company-name, .institution-name {
+            font-style: italic;
+            color: var(--light-text-color);
+            margin-top: 3px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .date {
+            font-size: 0.8em;
+            color: var(--light-text-color);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 1px;
+        }
+
+        ul li {
+            position: relative;
+            padding-right: 15px;
+            margin-bottom: 1px;
+            color: var(--text-color);
+            font-size: 0.9em;
+        }
+
+        .skills-category ul li {
+            font-size: 0.8em;
+        }
+
+        ul li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--accent-color);
+            font-size: 1em;
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+
+        .skills-category {
+            background-color: var(--bg-color);
+            padding: 6px;
+            border-radius: 6px;
+            border-top: 3px solid var(--accent-color);
+            margin: 0;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .skills-category h3 {
+            font-size: 1em;
+            color: var(--secondary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 3px;
+            margin-top: 0;
+            margin-bottom: 3px;
+        }
+
+        .skills-category:not(.full-width-skill):nth-child(even) {
+            margin-right: 2px;
+        }
+
+        .skills-category:not(.full-width-skill):nth-child(odd) {
+            margin-left: 2px;
+        }
+
+        .full-width-skill {
+            grid-column: 1 / -1;
+            margin: 0;
+            border-radius: 6px;
+        }
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+            font-size: 1em;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0s 0.5s;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .cv-container { padding: 10px; }
+            .contact-info { flex-direction: column; align-items: flex-end; }
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 8mm;
+            }
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+            }
+            body {
+                display: block !important;
+                font-size: 9.8pt;
+                line-height: 1.32;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            body:not(.resume-authenticated) #login-page {
+                display: flex !important;
+            }
+            body:not(.resume-authenticated) #resume-page {
+                display: none !important;
+            }
+            body.resume-authenticated #login-page,
+            #logout-toast {
+                display: none !important;
+            }
+            body.resume-authenticated #resume-page {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 100% !important;
+                max-width: none !important;
+                min-height: 277mm !important;
+                margin: 0 !important;
+                padding: 4mm 6mm !important;
+                box-sizing: border-box !important;
+                box-shadow: none !important;
+                border: 0 !important;
+                border-radius: 0 !important;
+                font-size: 9.8pt;
+                line-height: 1.32;
+                zoom: 1;
+            }
+            .bsd {
+                top: 2mm;
+                right: 4mm;
+                font-size: 8.5pt;
+            }
+            .header {
+                padding-bottom: 6px;
+                margin: 4px 0 6px;
+            }
+            .header h1 {
+                font-size: 19.5pt;
+                margin-bottom: 3px;
+            }
+            .header p {
+                font-size: 10.5pt;
+            }
+            .contact-info {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 4px 12px;
+                margin-top: 5px;
+            }
+            .contact-info-item,
+            .date {
+                font-size: 8.8pt;
+            }
+            .cover-letter-link {
+                color: var(--primary-color) !important;
+                text-decoration: underline !important;
+                font-weight: 700 !important;
+            }
+            #cover-letter-content {
+                display: none !important;
+            }
+            .section {
+                margin: 2px 0;
+            }
+            .section h2 {
+                font-size: 11.5pt;
+                padding-bottom: 2px;
+                margin: 6px 0 4px;
+                border-bottom-width: 1.5px;
+            }
+            .job-entry,
+            .education-entry,
+            .skills-category {
+                box-shadow: none !important;
+                background: #F8F9FA !important;
+                padding: 5px 8px;
+                margin-bottom: 4px;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                transform: none !important;
+            }
+            ul {
+                margin: 2px 0 0;
+            }
+            ul li {
+                font-size: 8.9pt;
+                line-height: 1.28;
+                margin-bottom: 2px;
+                padding-right: 12px;
+            }
+            .skills-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 4px;
+            }
+            .skills-category h3 {
+                font-size: 9.8pt;
+                margin-bottom: 3px;
+                padding-bottom: 2px;
+            }
+            .skills-category ul li {
+                font-size: 8.5pt;
+                line-height: 1.25;
+            }
+            .toast {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="login-page" class="page-container">
+        <div class="bsd">ב"ה</div>
+        <h1>ברוכים הבאים</h1>
+        <p>להמשך צפייה בקורות החיים, אנא הזינו את הקוד.</p>
+        <div class="password-container">
+            <input type="password" id="access-code" class="login-input" placeholder="הקלידו כאן את הקוד">
+            <i class="fas fa-eye password-toggle" id="toggle-password"></i>
+        </div>
+        <button id="access-button" class="login-button">כניסה</button>
+        <div id="error-message">הקוד שהזנת שגוי, אנא נסה שוב.</div>
+    </div>
+
+    <div id="resume-page" class="page-container">
+        <div class="bsd">ב"ה</div>
+        <div class="header">
+            <h1>♦︎מורן חיים♦︎</h1>
+            <p>מפתחת אפליקציות ואתרים, אנליסטית מידע ומומחית חדשנות AI</p>
+            <div class="contact-info">
+                <div class="contact-info-item"><i class="fas fa-mobile-alt"></i> 054-5210843</div>
+                <div class="contact-info-item"><i class="fas fa-envelope"></i> <a href="mailto:your.email@example.com">moranyhaim@gmail.com</a></div>
+                <div class="contact-info-item"><i class="fas fa-map-marker-alt"></i> רחובות, ישראל</div>
+                <div class="contact-info-item"><i class="fas fa-car"></i> רכב ורישיון נהיגה בתוקף</div>
+                <div class="contact-info-item"><i class="fas fa-file-alt"></i> <a class="cover-letter-link" id="toggle-cover-letter">מכתב מקדים</a></div>
+            </div>
+        </div>
+
+        <div id="cover-letter-content">
+            <p><b>שלום רב,</b></p>
+            <p>כאשת מקצוע מולטי-דיסציפלינרית ואוטודידקטית, אני מביאה שילוב של פיתוח תוכנה ואפליקציות, אנליזת נתונים, ניהול מערכות מידע והטמעת כלי בינה מלאכותית (AI) מתקדמים בתהליכי עבודה ומוצר.</p>
+            <p>הקפדתי תמיד לעבוד בהיקפים נרחבים המשלבים פיתוח, אנליזה, הוראה ועשייה אקדמית, תוך התעדכנות שוטפת בטכנולוגיות קצה וגמישות לעבודה במגוון תפקידים בתחומי הפיתוח, הדאטה, ניהול המוצר ומערכות המידע.</p>
+            <p>
+                <b>דוגמא לפרויקט אפליקטיבי | בינה מלאכותית:</b><br>
+                להורדת הסרטון <a href="https://github.com/MORANHAI/ResumeMornay/raw/main/milogyEluMorany.mp4" target="_blank">לחץ כאן</a> | לצפייה ישירה <a href="https://did.li/moranyAppProjectG" target="_blank">לחץ כאן</a>
+            </p>
+            <p>אשמח לשמוע פרטים נוספים על המשרה ובהתאם להשתלב בצוות ולהוביל יחד איתכם פרויקטים ותוצרים טכנולוגיים מוצלחים.</p>
+            <p><b>בכבוד רב,</b><br>מורן חיים</p>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-briefcase"></i> ניסיון תעסוקתי</h2>
+            <div class="job-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">מפתחת תוכנה, אתרי אינטרנט ואפליקציות (פרויקטים ופרילנס)</span>
+                        <span class="company-name">מגזר עסקי ומחקרי</span>
+                    </div>
+                    <span class="date">2016 – 2020</span>
+                </div>
+                <ul>
+                    <li>פיתוח אפליקציות, אתרים דינמיים ומערכות מידע מקצה לקצה בסביבות Java, C#, Python וטכנולוגיות Web, כולל עבודה שוטפת מול מסדי נתונים.</li>
+                    <li>אפיון, עיצוב והקמת פלטפורמות מבוססות ענן (WordPress, Wix), הטמעת מערכות ניהול תוכן וביצוע בדיקות איכות (QA).</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">מובילת פרויקטי תוכנה ומנחה להנדסת תוכנה ומדעי המחשב</span>
+                        <span class="company-name">מערכת החינוך</span>
+                    </div>
+                    <span class="date">2018 – 2026</span>
+                </div>
+                <ul>
+                    <li>הנחיה וליווי מקצה לקצה של פרויקטי גמר בפיתוח אפליקציות בפלטפורמות שונות, משלב האפיון והתכנון ועד כתיבת הקוד ובדיקות QA.</li>
+                    <li>הובלת תלמידים להישגים מצוינים בהנדסת תוכנה (5 יח"ל) ומדעי המחשב (5 יח"ל), תוך פיתוח פתרונות למידה מבוססי AI.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">מנחה ומדריכת חדשנות, בינה מלאכותית (AI) ופיתוח אפליקציות</span>
+                        <span class="company-name">הכשרות וסדנאות לצוותים מקצועיים ואנשי חינוך</span>
+                    </div>
+                    <span class="date">2025</span>
+                </div>
+                <ul>
+                    <li>הנחיית סדנאות מעשיות להטמעת כלי AI מתקדמים, יצירת אוואטרים אינטראקטיביים (D-ID) ובניית סוכני שיחה (צ'אטבוטים) ייעודיים.</li>
+                    <li>הדרכת חשיבה מחשובית ופיתוח אפליקציות בסביבת App Inventor 2, כולל בניית מערך הדרכה והנחיות להמשך עבודה עצמאית.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">מרצה ומפתחת קורס אקדמי מתוקשב</span>
+                        <span class="company-name">אוניברסיטת בר-אילן</span>
+                    </div>
+                    <span class="date">2020 – 2021</span>
+                </div>
+                <ul>
+                    <li>אפיון, תכנון ופיתוח מלא של קורס אקדמי סמסטריאלי ללמידה מרחוק (Online), כולל בניית סילבוס והפקת תכני למידה דיגיטליים.</li>
+                    <li>הוראה שוטפת, ליווי לומדים מרחוק, בדיקת מטלות והערכת ביצועים.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">רמ"ד קשרי מחקר ואנליסטית מידע</span>
+                        <span class="company-name">אוניברסיטת אריאל בשומרון</span>
+                    </div>
+                    <span class="date">2014 – 2015</span>
+                </div>
+                <ul>
+                    <li>ניהול, ניטור וטיוב מאגרי נתונים מחקריים פנימיים, איסוף מידע והפקת דוחות אנליטיים להנהלה.</li>
+                    <li>הדרכה וליווי מקצועי לחוקרים באקדמיה בתהליכי הגשה של הצעות מחקר וניהול אתר האינטרנט של היחידה.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-graduation-cap"></i> השכלה</h2>
+            <div class="education-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="degree">תעודת הוראה לאקדמאים (ממוצע 96.5)</span>
+                        <span class="institution-name">אוניברסיטת בר-אילן</span>
+                    </div>
+                    <span class="date">2019 – 2020</span>
+                </div>
+            </div>
+            <div class="education-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="degree">תואר שני (M.A) במידענות וטכנולוגיות ווב</span>
+                        <span class="institution-name">אוניברסיטת בר-אילן</span>
+                    </div>
+                    <span class="date">2015 – 2017</span>
+                </div>
+                <ul>
+                    <li>התמחות במדעי המחשב, טכנולוגיות מידע, מסדי נתונים, ארכיטקטורת מידע וניהול אתרים.</li>
+                </ul>
+            </div>
+            <div class="education-entry">
+                <div class="job-header">
+                    <div>
+                        <span class="degree">תואר ראשון (B.A) בפסיכולוגיה וקרימינולוגיה</span>
+                        <span class="institution-name">אוניברסיטת בר-אילן</span>
+                    </div>
+                    <span class="date">2010 – 2014</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-cogs"></i> מיומנויות</h2>
+            <div class="skills-container">
+                <div class="skills-category">
+                    <h3>פיתוח ותכנות</h3>
+                    <ul>
+                        <li>פיתוח אפליקציות: Android, Java & JEE, App Inventor 2.</li>
+                        <li>פיתוח אתרים: WordPress, Wix, Bootstrap.</li>
+                        <li>שפות תכנות: C#, Python, Java, JS, PHP, ASP.NET, HTML, CSS, SQL, XML.</li>
+                        <li>מסדי נתונים וכלי פיתוח: MySQL, Firebase, Cursor (Vibe Coding).</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <h3>מערכות וכלים נוספים</h3>
+                    <ul>
+                        <li>Microsoft Office (Excel מתקדם, Word, PowerPoint).</li>
+                        <li>ניתוח נתונים ו-BI: SPSS, Google Analytics.</li>
+                        <li>מערכות ארגוניות והוראה: Priority, Hilan, Padlet, Windows.</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <h3>בינה מלאכותית (AI) וחדשנות</h3>
+                    <ul>
+                        <li>פיתוח מבוסס AI, הנדסת פרומפטים, אוואטרים (D-ID) וסוכני שיחה.</li>
+                        <li>כלי AI לקוד, מחקר וכתיבה: Gemini, ChatGPT, DeepSeek.</li>
+                        <li>יצירת מדיה ועיצוב: Leonardo AI, Ideogram, Canva, GIMP.</li>
+                    </ul>
+                </div>
+                <div class="skills-category">
+                    <h3>חוזקות וכישורים אישיים</h3>
+                    <ul>
+                        <li>חריצות, מסירות ואחריות גבוהה לעמידה בהיקפי עבודה נרחבים.</li>
+                        <li>למידה אוטודידקטית מהירה וחשיבה אנליטית ומערכתית.</li>
+                        <li>יחסי אנוש מצוינים, עבודת צוות והובלת פרויקטים במקביל.</li>
+                    </ul>
+                </div>
+                <div class="skills-category full-width-skill">
+                    <h3>שפות</h3>
+                    <ul>
+                        <li>עברית: שפת אם | אנגלית: שליטה טובה מאוד.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="logout-toast" class="toast">
+        התנתקת אוטומטית עקב חוסר פעילות.
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        let resumeTimerId;
+
+        function showToast(message) {
+            const toast = document.getElementById('logout-toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        document.getElementById('access-button').addEventListener('click', function() {
+            const SECRET_HASH = "81fd7a736352b72891aed07d5c2caae320912ec884b69a41492e81377d6ae2d0";
+            const inputCode = document.getElementById('access-code').value;
+            const loginPage = document.getElementById('login-page');
+            const resumePage = document.getElementById('resume-page');
+            const errorMessage = document.getElementById('error-message');
+            const inputHash = CryptoJS.SHA256(inputCode).toString(CryptoJS.enc.Hex);
+
+            if (inputHash === SECRET_HASH) {
+                loginPage.style.display = 'none';
+                resumePage.style.display = 'grid';
+                document.body.classList.add('resume-authenticated');
+                resumeTimerId = setTimeout(() => {
+                    showToast("התנתקת אוטומטית עקב חוסר פעילות");
+                    loginPage.style.display = 'flex';
+                    resumePage.style.display = 'none';
+                    document.body.classList.remove('resume-authenticated');
+                    document.getElementById('access-code').value = '';
+                    errorMessage.classList.remove('visible');
+                }, 600000);
+            } else {
+                errorMessage.classList.add('visible');
+            }
+        });
+
+        document.getElementById('toggle-cover-letter').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('cover-letter-content').classList.toggle('visible');
+        });
+
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('access-code');
+            const icon = this;
+            let timeoutId;
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+                timeoutId = setTimeout(() => {
+                    passwordInput.type = "password";
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }, 2000);
+            } else {
+                clearTimeout(timeoutId);
+                passwordInput.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
+</body>
+</html>
+
